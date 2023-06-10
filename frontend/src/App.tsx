@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 function App() {
   let raw_messages: string[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
-  const shuffle = (array) => {
+  const shuffle = (array: any) => {
     array.sort(() => Math.random() - 0.5);
   }
   shuffle(raw_messages);

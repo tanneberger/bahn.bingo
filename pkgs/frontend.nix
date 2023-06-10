@@ -1,26 +1,24 @@
 { pkgs, lib, config, mkYarnPackage, yarn }:
 mkYarnPackage {
-    name = "bahn.bingo-frontend";
+    name = "bahn-bingo-frontend";
     src = ../frontend/.;
 
     buildInputs = [ yarn ];
 
-    #buildPhase = ''
-    #  FILE=$(readlink ./deps/kindergarten/node_modules)
-    #  rm ./deps/kindergarten/node_modules
-    #  mkdir ./deps/kindergarten/node_modules
-    #  cp -r $FILE/ ./deps/kindergarten/
-    #  cp -r ./node_modules/* ./deps/kindergarten/node_modules/
-    #
-    #  yarn run build:ci
-    #'';
+    buildPhase = ''
+      #FILE=$(readlink ./deps/bahn-bingo-frontend/node_modules)
+      #rm ./deps/bahn-bingo-frontend/node_modules
+      #mkdir ./deps/bahn-bingo-frontend/node_modules
+      #cp -r $FILE/ ./deps/bahn-bingo-frontend/
+      #cp -r ./node_modules/* ./deps/bahn-bingo-frontend/node_modules/
+    
+      yarn build
+    '';
 
-    #installPhase = ''
-    #  mkdir -p $out/bin/en
-    #  mkdir -p $out/bin/de
-    #  cp -r ./deps/kindergarten/dist/en-US/* $out/bin/en/
-    #  cp -r ./deps/kindergarten/dist/de-DE/* $out/bin/de/
-    #'';
+    installPhase = ''
+      mkdir -p $out/bin
+      cp -r ./deps/bahn.bingo/dist/* $out/bin/
+    '';
 
     doDist = false;
 
