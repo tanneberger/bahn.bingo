@@ -131,8 +131,10 @@ in
       "${cfg.domains.websiteDomain}" = {
         enableACME = true;
         forceSSL = true;
-        root = "${pkgs.bahn-bingo-frontend}/bin/";
-        tryFiles = "$uri /$1/index.html =404";
+        locations."/" = {
+          tryFiles = "$uri /$1/index.html =404";
+          root = "${pkgs.bahn-bingo-frontend}/bin/";
+        };
       };
       "${cfg.domains.filesDomain}" = {
         enableACME = true;
