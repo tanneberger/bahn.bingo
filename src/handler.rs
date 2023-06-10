@@ -43,12 +43,12 @@ pub async fn create_share_picture(
             }
         };
 
-        read_file_content = read_file_content.replace(&format!("test{}", i), text);
+        read_file_content = read_file_content.replace(&format!("Test{}", i), text);
     }
 
     info!("successfully patched image for {}", &picure_id);
 
-    let loader = match PixbufLoader::new_with_mime_type("image/svg+xml") {
+    let loader = match PixbufLoader::new_with_mime_type("image/svg") {
         Ok(valid_pixbuf) => valid_pixbuf,
         Err(e) => {
             error!("bixpuf cannot load patched svg {:?}", e);
