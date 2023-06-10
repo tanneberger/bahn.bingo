@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 let
-  cfg = config.TLMS.datacare;
+  cfg = config.TLMS.bahnbingo;
 in
 {
   options.bahn-bingo = with lib; {
@@ -21,12 +21,12 @@ in
       host = mkOption {
         type = types.str;
         default = "127.0.0.1";
-        description = ''host of datacare'';
+        description = ''host of bahnbingo'';
       };
       port = mkOption {
         type = types.port;
         default = 5070;
-        description = ''port of datacare'';
+        description = ''port of bahnbingo'';
       };
     };
     pictureFolder = mkOption {
@@ -36,7 +36,7 @@ in
     };
     bingoTemplate = mkOption {
       type = types.str;
-      default = "/var/lib/bahn-bingo/template.svg";
+      default = "${../frontend/assets/share_template.svg}";
       description = ''where the bingo field template lives'';
     };
     bingoFieldConfig = mkOption {
@@ -63,12 +63,12 @@ in
     };
     user = mkOption {
       type = types.str;
-      default = "datacare";
+      default = "bahnbingo";
       description = ''systemd user'';
     };
     group = mkOption {
       type = types.str;
-      default = "datacare";
+      default = "bahnbingo";
       description = ''group of systemd user'';
     };
     
@@ -76,7 +76,7 @@ in
       # TODO: make an enum of possible values
       type = types.str;
       # this is a little weird because if want to see all the correct value would be trace
-      default = "datacare";
+      default = "bahnbingo";
       description = ''log level of the application'';
     };
   };
@@ -106,7 +106,7 @@ in
 
         serviceConfig = {
           Type = "forking";
-          User = "datacare";
+          User = "bahnbingo";
           Restart = "always";
         };
       };
