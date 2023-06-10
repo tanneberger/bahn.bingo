@@ -84,12 +84,12 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.bahn-bingo-backend pkgs.bahn-bingo-frontend ];
     systemd.services = {
-      "bahn.bingo" = {
+      "bahn-bingo" = {
         enable = true;
 
         description = "bingo field generator";
         wantedBy = [ "multi-user.target" ];
-        after = [ "bahn.bingo-setup" ];
+        after = [ "bahn-bingo-setup" ];
 
         script = ''
           exec ${pkgs.bahn-bingo-backend}/bin/bahn_bingo&
@@ -111,7 +111,7 @@ in
           Restart = "always";
         };
       };
-      "bahn.bingo-setup" = {
+      "bahn-bingo-setup" = {
         description = "create folders for bahn.bingo";
         wantedBy = [ "multi-user.target" ];
         serviceConfig.Type = "oneshot";
