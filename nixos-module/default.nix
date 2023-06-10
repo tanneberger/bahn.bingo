@@ -89,7 +89,7 @@ in
 
         description = "bingo field generator";
         wantedBy = [ "multi-user.target" ];
-        after = [ "bahn-bingo-setup" ];
+        after = [ "bahn-bingo-setup.service" ];
 
         script = ''
           exec ${pkgs.bahn-bingo-backend}/bin/bahn_bingo&
