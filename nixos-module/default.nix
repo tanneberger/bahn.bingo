@@ -73,10 +73,8 @@ in
     };
     
     logLevel = mkOption {
-      # TODO: make an enum of possible values
       type = types.str;
-      # this is a little weird because if want to see all the correct value would be trace
-      default = "bahnbingo";
+      default = "info";
       description = ''log level of the application'';
     };
   };
