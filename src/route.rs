@@ -19,7 +19,7 @@ pub fn create_router() -> Router {
     .expect("BAHNBINGO_FIELD_CONFIG has not valid format!");
 
     let config = AppConfig {
-        template_path: std::env::var("BAHNBINGO_BING_TEMPLATE")
+        template_path: std::env::var("BAHNBINGO_BINGO_TEMPLATE")
             .expect("BAHNBINGO_BINGO_TEMPLATE needs to be specified"),
         picture_folder: std::env::var("BAHNBINGO_PICTURE_FOLDER")
             .expect("BAHNBINGO_PICTURE_FOLDER needs to be specified"),
