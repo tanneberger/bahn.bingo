@@ -41,7 +41,7 @@ in
     };
     bingoFieldConfig = mkOption {
       type = types.str;
-      default = "/var/lib/bahn-bingo/bingo.config";
+      default = "${../bingo-values.json}"
       description = ''enum text mapping'';
     };
     domains = {
