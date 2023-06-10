@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 let
-  cfg = config.TLMS.bahnbingo;
+  cfg = config.bahn-bingo;
 in
 {
   options.bahn-bingo = with lib; {
@@ -41,7 +41,7 @@ in
     };
     bingoFieldConfig = mkOption {
       type = types.str;
-      default = "${../bingo-values.json}"
+      default = "${../bingo-values.json}";
       description = ''enum text mapping'';
     };
     domains = {
@@ -89,6 +89,7 @@ in
 
         description = "bingo field generator";
         wantedBy = [ "multi-user.target" ];
+        after = [ "bahn.bingo-setup" ];
 
         script = ''
           exec ${pkgs.bahn-bingo-backend}/bin/bahn_bingo&
@@ -106,9 +107,22 @@ in
 
         serviceConfig = {
           Type = "forking";
-          User = "bahnbingo";
+          User = cfg.user;
           Restart = "always";
         };
+      };
+      "bahn.bingo-setup" = {
+        description = "create folders for bahn.bingo";
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig.Type = "oneshot";
+
+        path = [ pkgs.sudo ];
+
+        script = ''
+          mkdir -p ${cfg.pictureFolder}
+          chown ${cfg.user} ${cfg.pictureFolder}
+          chmod 774 ${cfg.pictureFolder}
+        '';
       };
     };
     services.nginx = {
