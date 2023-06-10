@@ -1,40 +1,35 @@
 use axum::{
     extract::State,
     http::StatusCode,
+    response::{IntoResponse, Response},
     Json,
-    response::{IntoResponse, Response}
 };
-use uuid::Uuid;
 use log::error;
+use uuid::Uuid;
 
-use gdk_pixbuf::{
-    PixbufLoader,
-};
 use gdk_pixbuf::prelude::PixbufLoaderExt;
+use gdk_pixbuf::PixbufLoader;
 
 use crate::{
-    models::{BingoField, AppConfig},
-    responses::{SharePictureCreated},
+    models::{AppConfig, BingoField},
+    responses::SharePictureCreated,
 };
 
-pub async fn get_text_mapping (
-    State(state): State<AppConfig>
-) -> Response {
+pub async fn get_text_mapping(State(state): State<AppConfig>) -> Response {
     Json(state.text_mapping).into_response()
 }
 
-
-pub async fn create_share_picture (
+pub async fn create_share_picture(
     State(state): State<AppConfig>,
     Json(body): Json<BingoField>,
 ) -> Response {
     let picure_id = Uuid::new_v4();
-    
+
     let mut read_file_content = match std::fs::read_to_string(&state.template_path) {
         Ok(content) => content,
         Err(e) => {
             error!("error while reading template file {:?}", e);
-            return StatusCode::INTERNAL_SERVER_ERROR.into_response()
+            return StatusCode::INTERNAL_SERVER_ERROR.into_response();
         }
     };
 
@@ -43,7 +38,7 @@ pub async fn create_share_picture (
             Some(value) => value,
             None => {
                 error!("cannot find specified enum value");
-                return StatusCode::BAD_REQUEST.into_response()
+                return StatusCode::BAD_REQUEST.into_response();
             }
         };
 
@@ -84,11 +79,13 @@ pub async fn create_share_picture (
         }
     };
 
-    if let Err(e) = std::fs::write(format!("{}/{}.png", &state.template_path, picure_id.to_string()), &bytes) {
-
+    if let Err(e) = std::fs::write(format!("{}/{}.png", &state.template_path, picure_id), bytes) {
         error!("cannot write png file {:?}", e);
         return StatusCode::INTERNAL_SERVER_ERROR.into_response();
     }
 
-    Json( SharePictureCreated {picture_id : picure_id } ).into_response()
+    Json(SharePictureCreated {
+        picture_id: picure_id,
+    })
+    .into_response()
 }

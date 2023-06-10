@@ -3,7 +3,5 @@ use uuid::Uuid;
 
 #[derive(Serialize)]
 pub struct SharePictureCreated {
-    pub picture_id: Uuid
+    pub picture_id: Uuid,
 }
-
-
