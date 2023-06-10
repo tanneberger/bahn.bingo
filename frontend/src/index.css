@@ -1,0 +1,11 @@
+.parent {
+    position: relative;
+}
+
+.box {
+  position: absolute;
+  left: 35%;
+  width: 30%;
+}
+
+

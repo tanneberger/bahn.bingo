@@ -1,16 +1,7 @@
-.parent {
-    position: relative;
-}
-
-.box {
-  position: absolute;
-  left: 35%;
-}
-
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 10%);
-  grid-template-rows: repeat(3, 10%);
+  grid-template-columns: repeat(3, 30%);
+  grid-template-rows: repeat(3, 30%);
   padding: 0px;
   width: 100%;
 }
@@ -47,3 +38,4 @@ input[type=checkbox] + .bingo-field-label {
 input[type=checkbox]:checked + .bingo-field-label{
     background: #ff0000;
 }
+
