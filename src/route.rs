@@ -20,9 +20,9 @@ pub fn create_router() -> Router {
 
     let config = AppConfig {
         template_path: std::env::var("BAHNBINGO_BING_TEMPLATE")
-            .expect("BAHNBINGO_BING_TEMPLATE needs to be specified"),
+            .expect("BAHNBINGO_BINGO_TEMPLATE needs to be specified"),
         picture_folder: std::env::var("BAHNBINGO_PICTURE_FOLDER")
-            .expect("BAHNBINGO_BING_TEMPLATE needs to be specified"),
+            .expect("BAHNBINGO_PICTURE_FOLDER needs to be specified"),
         text_mapping,
     };
 
