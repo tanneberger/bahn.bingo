@@ -4,7 +4,7 @@ use axum::{
     response::{IntoResponse, Response},
     Json,
 };
-use log::error;
+use log::{error, info};
 use uuid::Uuid;
 
 use gdk_pixbuf::prelude::PixbufLoaderExt;
@@ -24,6 +24,7 @@ pub async fn create_share_picture(
     Json(body): Json<BingoField>,
 ) -> Response {
     let picure_id = Uuid::new_v4();
+    info!("creating image with id {}", &picure_id);
 
     let mut read_file_content = match std::fs::read_to_string(&state.template_path) {
         Ok(content) => content,
@@ -44,6 +45,8 @@ pub async fn create_share_picture(
 
         read_file_content = read_file_content.replace(&format!("test{}", i), text);
     }
+
+    info!("successfully patched image for {}", &picure_id);
 
     let loader = match PixbufLoader::new_with_mime_type("image/svg+xml") {
         Ok(valid_pixbuf) => valid_pixbuf,
@@ -83,6 +86,8 @@ pub async fn create_share_picture(
         error!("cannot write png file {:?}", e);
         return StatusCode::INTERNAL_SERVER_ERROR.into_response();
     }
+
+    info!("image generating complete {}", &picure_id);
 
     Json(SharePictureCreated {
         picture_id: picure_id,
