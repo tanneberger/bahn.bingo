@@ -97,7 +97,7 @@ in
 
         environment = {
           "RUST_BACKTRACE" = "${cfg.rustBacktrace}";
-          "RUST_LOG" = "${cfg.log_level}";
+          "RUST_LOG" = "${cfg.logLevel}";
           "BAHNBINGO_HTTP_PORT" = "${toString cfg.http.port}";
           "BAHNBINGO_HTTP_HOST" = "${toString cfg.http.host}";
           "BAHNBINGO_PICTURE_FOLDER" = "${toString cfg.pictureFolder}";
