@@ -13,6 +13,7 @@ use tower_http::cors::CorsLayer;
 
 #[tokio::main]
 async fn main() {
+    env_logger::init();
     let cors = CorsLayer::new()
         .allow_origin("bahn.bingo".parse::<HeaderValue>().unwrap())
         .allow_methods([Method::GET, Method::POST, Method::PATCH, Method::DELETE])

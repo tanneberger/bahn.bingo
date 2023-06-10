@@ -16,3 +16,4 @@ uuid = {version = "*", features = ["serde", "v4"]}
 chrono = {version = "*", features = ["serde"]}
 gdk-pixbuf = "0.8"
 log = "*"
+env_logger = "*"
