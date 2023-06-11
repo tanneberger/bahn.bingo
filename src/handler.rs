@@ -43,8 +43,10 @@ pub async fn create_share_picture(
                 return StatusCode::BAD_REQUEST.into_response();
             }
         };
-
-        read_file_content = read_file_content.replace(&format!("Test{}", i), text);
+        
+        let pattern = format!("Test{}", i);
+        read_file_content = read_file_content.replace(&pattern, &text);
+        info!("replacing {} with {}", &pattern, &text);
     }
 
     info!("successfully patched image for {}", &picure_id);
