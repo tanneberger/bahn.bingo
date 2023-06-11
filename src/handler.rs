@@ -69,9 +69,10 @@ pub async fn create_share_picture(
     };
 
     resvg::Tree::from_usvg(&tree).render(usvg::Transform::identity(), &mut image.as_mut());
-
-    if let Err(e) = image.save_png(format!("{}/{}.png", &state.template_path, picure_id)) {
-        error!("error while saving to png file {:?}", e);
+    
+    let output_file = format!("{}/{}.png", &state.picture_folder, picure_id);
+    if let Err(e) = image.save_png(&output_file) {
+        error!("error while saving to png file {:?} saving to {}", e, &output_file);
         return StatusCode::INTERNAL_SERVER_ERROR.into_response();
     }
 
