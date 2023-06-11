@@ -137,7 +137,9 @@ in
       "${cfg.domains.filesDomain}" = {
         enableACME = true;
         forceSSL = true;
-        root = cfg.pictureFolder;
+        locations."/" = {
+          root = cfg.pictureFolder;
+        };
       };
       "${cfg.domains.apiDomain}" = {
         enableACME = true;
