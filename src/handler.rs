@@ -7,8 +7,9 @@ use axum::{
 use log::{error, info};
 use uuid::Uuid;
 
-use gdk_pixbuf::prelude::PixbufLoaderExt;
-use gdk_pixbuf::PixbufLoader;
+use resvg::{usvg, tiny_skia};
+use resvg::usvg::TreeParsing;
+use tiny_skia::Pixmap;
 
 use crate::{
     models::{AppConfig, BingoField},
@@ -47,43 +48,30 @@ pub async fn create_share_picture(
     }
 
     info!("successfully patched image for {}", &picure_id);
-
-    let loader = match PixbufLoader::new_with_mime_type("image/svg") {
-        Ok(valid_pixbuf) => valid_pixbuf,
+    
+    let tree = match usvg::Tree::from_str(&read_file_content, &usvg::Options::default()) {
+        Ok(valid_svg) => valid_svg,
         Err(e) => {
-            error!("bixpuf cannot load patched svg {:?}", e);
+            error!("usvg cannot load patched svg {:?}", e);
             return StatusCode::INTERNAL_SERVER_ERROR.into_response();
         }
     };
 
-    if let Err(e) = loader.write(read_file_content.as_bytes()) {
-        error!("cannot insert text into progressive pixbuf loader {:?}", e);
-        return StatusCode::INTERNAL_SERVER_ERROR.into_response();
-    }
+    let width: u32 = 1000;
+    let height: u32 = 1000;
 
-    if let Err(e) = loader.close() {
-        error!("cannot close pixbuf {:?}", e);
-        return StatusCode::INTERNAL_SERVER_ERROR.into_response();
-    }
-
-    let pixbuf = match loader.get_pixbuf() {
-        Some(valid_pixbuf) => valid_pixbuf,
+    let mut image = match Pixmap::new(width, height) {
+        Some(pixel_buf) => pixel_buf,
         None => {
-            error!("no valid pixbuf can be returned");
+            error!("cannot create PixmapMut");
             return StatusCode::INTERNAL_SERVER_ERROR.into_response();
         }
     };
 
-    let bytes: Vec<u8> = match pixbuf.save_to_bufferv("png", &[]) {
-        Ok(found_bytes) => found_bytes,
-        Err(e) => {
-            error!("cannot save pixbuf as png {:?}", e);
-            return StatusCode::INTERNAL_SERVER_ERROR.into_response();
-        }
-    };
+    resvg::Tree::from_usvg(&tree).render(usvg::Transform::identity(), &mut image.as_mut());
 
-    if let Err(e) = std::fs::write(format!("{}/{}.png", &state.template_path, picure_id), bytes) {
-        error!("cannot write png file {:?}", e);
+    if let Err(e) = image.save_png(format!("{}/{}.png", &state.template_path, picure_id)) {
+        error!("error while saving to png file {:?}", e);
         return StatusCode::INTERNAL_SERVER_ERROR.into_response();
     }
 

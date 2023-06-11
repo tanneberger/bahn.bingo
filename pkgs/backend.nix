@@ -8,7 +8,7 @@ buildPackage {
 
   cargoSha256 = lib.fakeSha256;
 
-  nativeBuildInputs = [ pkg-config gio-sharp gdk-pixbuf];
+  nativeBuildInputs = [ pkg-config ];
 
   meta = with lib; {
     description = "simple rust server which renders bingo fields ";
