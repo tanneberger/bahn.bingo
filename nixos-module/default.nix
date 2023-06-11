@@ -118,7 +118,7 @@ in
 
         script = ''
           mkdir -p ${cfg.pictureFolder}
-          chown ${cfg.user} ${cfg.pictureFolder}
+          chown ${cfg.user}:nginx ${cfg.pictureFolder}
           chmod 774 ${cfg.pictureFolder}
         '';
       };
