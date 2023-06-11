@@ -48,8 +48,9 @@ pub async fn create_share_picture(
         read_file_content = read_file_content.replace(&pattern, &text);
         info!("replacing {} with {}", &pattern, &text);
     }
-
-    info!("successfully patched image for {}\nContent:\n{}", &picure_id, &read_file_content);
+    
+    std::fs::write("/tmp/test.svg", &read_file_content);
+    info!("successfully patched image for {}", &picure_id);
     
     let tree = match usvg::Tree::from_str(&read_file_content, &usvg::Options::default()) {
         Ok(valid_svg) => valid_svg,
