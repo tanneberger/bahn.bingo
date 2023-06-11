@@ -49,7 +49,7 @@ pub async fn create_share_picture(
         info!("replacing {} with {}", &pattern, &text);
     }
 
-    info!("successfully patched image for {}", &picure_id);
+    info!("successfully patched image for {}\nContent:\n{}", &picure_id, &read_file_content);
     
     let tree = match usvg::Tree::from_str(&read_file_content, &usvg::Options::default()) {
         Ok(valid_svg) => valid_svg,
