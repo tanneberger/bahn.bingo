@@ -35,7 +35,7 @@ def share():
     svg_content_copy = copy.copy(input_svg)
     for i in range(9):
         # validating that it is a valid bingo field
-        if data['field'][i] not in name_mapping:
+        if str(data['field'][i]) not in name_mapping.keys():
             return "Bad User Data", 400
 
         svg_content_copy = svg_content_copy.replace("Test{}".format(str(i)), name_mapping[str(data["field"][i])])
