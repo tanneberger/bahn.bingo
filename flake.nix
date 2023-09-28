@@ -48,7 +48,7 @@
       }
       ) // {
       overlays.default = final: prev: {
-        inherit (self.packages.${prev.system});
+        inherit (self.packages.${prev.system}) bahn-bingo-frontend;
       };
 
       nixosModules = rec {
