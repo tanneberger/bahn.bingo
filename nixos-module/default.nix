@@ -80,7 +80,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.bahn-bingo-backend pkgs.bahn-bingo-frontend ];
+    environment.systemPackages = [ pkgs.bahn-bingo-frontend ];
     systemd.services = {
       "bahn-bingo" = {
         enable = true;
