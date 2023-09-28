@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: repeat(3, 30%);
   grid-template-rows: repeat(3, 30%);
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -13,29 +14,30 @@
 }
 
 .bingo-field-label {
- border:1px solid #ccc;
- padding:0px;
- margin:0 0 10px;
- display:flex; 
- flex: 1;
- margin: 0;
- width: 100%;
- height: 100%;
+  display: flex;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
 }
 
-.bingo-field-label:hover{
- cursor:pointer;
+.bingo-field-label:hover {
+  cursor: pointer;
 }
 
 .bingo-field-input {
-    display: none;
-    background:#ff0000;
+  display: none;
+  background: #ff0000;
 }
 
-input[type=checkbox] + .bingo-field-label {
-    color: #ffffff;
-} 
-input[type=checkbox]:checked + .bingo-field-label{
-    background: #ff0000;
+input[type="checkbox"] + .bingo-field-label {
+  background: #ffffff;
 }
-
+input[type="checkbox"]:checked + .bingo-field-label {
+  background: #ff0000;
+}
