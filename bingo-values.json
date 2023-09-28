@@ -1,8 +1,8 @@
 {
     "0": "Bahnausfall",
     "1": "Signalstörung", 
-    "2": "Person auf Gleis",
-    "3": "Verspätung aus vorheriger Fahrt",
+    "2": "Person \nauf Gleis",
+    "3": "Verspätung aus\n vorheriger Fahrt",
     "4": "Fehlende Streckenkenntnis",
     "5": "Weichenfehler",
     "6": "Kaputte Oberleitung",

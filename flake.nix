@@ -34,32 +34,23 @@
           latest.rustc
         ];
 
-        bahn-bingo-backend = pkgs.callPackage ./pkgs/backend.nix {
-          buildPackage = (naersk.lib.${system}.override {
-            cargo = toolchain;
-            rustc = toolchain;
-          }).buildPackage;
-        };
         bahn-bingo-frontend = pkgs.callPackage ./pkgs/frontend.nix {};
-
-        test-vm-pkg = self.nixosConfigurations.bahn-bingo-backend-mctest.config.system.build.vm;
       in
       rec {
         checks = packages;
         packages = {
-          bahn-bingo-backend = bahn-bingo-backend;
           bahn-bingo-frontend = bahn-bingo-frontend;
-          default = bahn-bingo-backend;
+          default = bahn-bingo-frontend;
         };
-        devShells.default = pkgs.mkShell {
-          nativeBuildInputs = (with packages.bahn-bingo-backend; nativeBuildInputs ++ buildInputs);
-        };
+        #devShells.default = pkgs.mkShell {
+        #  nativeBuildInputs = (with packages.bahn-bingo-backend; nativeBuildInputs ++ buildInputs);
+        #};
       }
       ) // {
       overlays.default = final: prev: {
-        inherit (self.packages.${prev.system})
-        bahn-bingo-backend bahn-bingo-frontend;
+        inherit (self.packages.${prev.system});
       };
+
       nixosModules = rec {
         default = bahn-bingo-backend;
         bahn-bingo-backend = import ./nixos-module;

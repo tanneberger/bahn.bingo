@@ -90,7 +90,7 @@ in
         after = [ "bahn-bingo-setup.service" ];
 
         script = ''
-          exec ${pkgs.bahn-bingo-backend}/bin/bahn_bingo&
+          exec ${pkgs.python311.withPackages(ps: with ps; [ pyvips flask ])}/bin/python3.11 ${../bahnbingo/__init__.py}&
         '';
 
         environment = {
