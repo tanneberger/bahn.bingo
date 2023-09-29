@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i python3.11 -p "python311.withPackages(ps: with ps; [ pyvips flask flask-cors ])"
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, response, jsonify
 from flask_cors import CORS, cross_origin
 import json
 import os
@@ -26,6 +26,7 @@ with open(os.getenv("BAHNBINGO_BINGO_TEMPLATE")) as f:
 @app.route('/bingo', methods=['GET'])
 @cross_origin()
 def bingo():
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify(name_mapping)
 
 
@@ -52,6 +53,7 @@ def share():
     image = pyvips.Image.svgload_buffer(svg_content_copy.encode(), dpi=300)
     image.write_to_file(output_png_path)
 
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify({"picture_id": new_uuid})
 
 if __name__ == '__main__':
