@@ -23,19 +23,6 @@ with open(os.getenv("BAHNBINGO_BINGO_TEMPLATE")) as f:
     input_svg = f.read()
 
 
-def _build_cors_preflight_response():
-    response = make_response()
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add('Access-Control-Allow-Headers', "*")
-    response.headers.add('Access-Control-Allow-Methods', "*")
-    return response
-
-
-def _corsify_actual_response(response):
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
-
 @app.route('/bingo', methods=['GET'])
 @cross_origin()
 def bingo():
@@ -66,11 +53,6 @@ def share():
     image.write_to_file(output_png_path)
 
     return jsonify({"picture_id": new_uuid})
-
-
-def main():
-    app.run(host=os.getenv("BAHNBINGO_HTTP_HOST"), port=int(os.getenv("BAHNBINGO_HTTP_PORT")))
-
 
 if __name__ == '__main__':
     print(name_mapping)
