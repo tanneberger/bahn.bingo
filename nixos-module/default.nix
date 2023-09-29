@@ -134,7 +134,7 @@ in
           root = "${pkgs.bahn-bingo-frontend}/bin/";
         };
         extraConfig = ''
-          add_header Access-Control-Allow-Headers *;
+          add_header Access-Control-Allow-Origin *;
         '';
       };
       "${cfg.domains.filesDomain}" = {
