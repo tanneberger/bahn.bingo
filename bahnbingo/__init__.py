@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-# !nix-shell -i python3.11 -p "python311.withPackages(ps: with ps; [ pyvips flask flask-cors ])"
+#!nix-shell -i python3.11 -p "python311.withPackages(ps: with ps; [ pyvips flask flask-cors ])"
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
