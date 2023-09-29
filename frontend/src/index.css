@@ -3,9 +3,7 @@
 }
 
 .box {
-  position: absolute;
-  left: 35%;
-  width: 30%;
+  margin: auto;
+  width:  30rem;
+  max-width: calc(100vw - 2rem);
 }
-
-
