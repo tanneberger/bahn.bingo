@@ -133,6 +133,9 @@ in
           tryFiles = "$uri /$1/index.html =404";
           root = "${pkgs.bahn-bingo-frontend}/bin/";
         };
+        extraConfig = ''
+          add_header Access-Control-Allow-Origin *;
+        '';
       };
       "${cfg.domains.filesDomain}" = {
         enableACME = true;
