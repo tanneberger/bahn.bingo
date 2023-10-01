@@ -1,9 +1,10 @@
-.parent {
-    position: relative;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.box {
-  margin: auto;
-  width:  30rem;
-  max-width: calc(100vw - 2rem);
+input[type="checkbox"] + label.bingo-field-label {
+  background: #ffffff;
+}
+input[type="checkbox"]:checked + label.bingo-field-label {
+  background: #ff0000;
 }
