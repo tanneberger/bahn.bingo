@@ -25,8 +25,7 @@ with open(os.getenv("BAHNBINGO_BINGO_TEMPLATE")) as f:
 @app.route('/bingo', methods=['GET'])
 #@cross_origin()
 def bingo():
-    response = jsonify({"picture_id": new_uuid})
-    response.headers.add('Access-Control-Allow-Origin', '*')
+    response = jsonify(name_mapping)
     return response
 
 
@@ -54,7 +53,6 @@ def share():
     image.write_to_file(output_png_path)
 
     response = jsonify({"picture_id": new_uuid})
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 

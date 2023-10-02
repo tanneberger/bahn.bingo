@@ -134,7 +134,7 @@ in
           root = "${pkgs.bahn-bingo-frontend}/bin/";
         };
         extraConfig = ''
-          add_header 'Access-Control-Allow-Origin' "*";
+          add_header 'Access-Control-Allow-Origin' '*, *';
           add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
           add_header 'Access-Control-Allow-Credentials' 'true';
           add_header 'Access-Control-Allow-Headers' '*';
@@ -154,7 +154,7 @@ in
           proxyPass = with cfg.http; "http://${host}:${toString port}";
         };
         extraConfig = ''
-          add_header 'Access-Control-Allow-Origin' "*";
+          add_header 'Access-Control-Allow-Origin' '*, *';
           add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
           add_header 'Access-Control-Allow-Credentials' 'true';
           add_header 'Access-Control-Allow-Headers' '*';
