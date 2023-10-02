@@ -1,24 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const getText = () =>
   `Bahn Bingo - Das hoch moderne, inovative feedback portal der Deutschen Bahn AG.
 https://bahn.bingo`;
 
-const openMastodon = ({ instance, text }) => {
+const openMastodon = ({ instance, text }: { instance: string; text: string; }) => {
   const shareUrl = `${instance}share?text=${encodeURIComponent(text)}`;
   window.open(shareUrl, '_blank');
 }
 
-function ShareOnMastodon({ field }) {
-  const [showModal, setShowMoal] = useState(false as boolean);
-
+function ShareOnMastodon() {
   const [instance, setInstance] = useState("");
 
   return (
     <>
       <button
         className="btn btn-info"
-        onClick={() => document.getElementById('mastodon-modal').showModal()}
+        onClick={() => (document.getElementById('mastodon-modal') as HTMLDialogElement).showModal()}
       >
         Share on Mastodon
       </button>
