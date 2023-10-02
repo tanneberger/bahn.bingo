@@ -9,12 +9,6 @@ import copy
 import pyvips
 
 app = Flask(__name__)  # Flask constructor
-#CORS(app)
-#cors = CORS(app, resource={
-#    r"/*": {
-#        "origins": "*"
-#    }
-#})
 
 with open(os.getenv("BAHNBINGO_FIELD_CONFIG")) as f:
     name_mapping = json.loads(f.read())
@@ -23,14 +17,12 @@ with open(os.getenv("BAHNBINGO_BINGO_TEMPLATE")) as f:
 
 
 @app.route('/bingo', methods=['GET'])
-#@cross_origin()
 def bingo():
     response = jsonify(name_mapping)
     return response
 
 
 @app.route('/share', methods=['POST'])
-#@cross_origin()
 def share():
     data = request.get_json(force=True)
 
