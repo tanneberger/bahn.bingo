@@ -1,8 +1,7 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i python3.11 -p "python311.withPackages(ps: with ps; [ pyvips flask flask-cors ])"
+#!nix-shell -i python3.11 -p "python311.withPackages(ps: with ps; [ pyvips flask ])"
 
 from flask import Flask, request, jsonify
-from flask_cors import CORS, cross_origin
 import json
 import os
 import uuid
@@ -10,12 +9,12 @@ import copy
 import pyvips
 
 app = Flask(__name__)  # Flask constructor
-CORS(app)
-cors = CORS(app, resource={
-    r"/*": {
-        "origins": "*"
-    }
-})
+#CORS(app)
+#cors = CORS(app, resource={
+#    r"/*": {
+#        "origins": "*"
+#    }
+#})
 
 with open(os.getenv("BAHNBINGO_FIELD_CONFIG")) as f:
     name_mapping = json.loads(f.read())
@@ -24,7 +23,7 @@ with open(os.getenv("BAHNBINGO_BINGO_TEMPLATE")) as f:
 
 
 @app.route('/bingo', methods=['GET'])
-@cross_origin()
+#@cross_origin()
 def bingo():
     response = jsonify({"picture_id": new_uuid})
     response.headers.add('Access-Control-Allow-Origin', '*')
@@ -32,7 +31,7 @@ def bingo():
 
 
 @app.route('/share', methods=['POST'])
-@cross_origin()
+#@cross_origin()
 def share():
     data = request.get_json(force=True)
 
