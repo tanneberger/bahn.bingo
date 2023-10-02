@@ -155,18 +155,6 @@ in
           add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
           add_header 'Access-Control-Allow-Credentials' 'true';
           add_header 'Access-Control-Allow-Headers' '*';
-
-          if ($request_method = OPTIONS) {
-
-              add_header 'Access-Control-Allow-Origin' "*";
-              add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
-              add_header 'Access-Control-Allow-Credentials' 'true';
-              add_header 'Access-Control-Allow-Headers' '*';
-
-              add_header Content-Type text/plain;
-              add_header Content-Length 0;
-              return 204;
-          }
         '';
       };
     };
