@@ -23,10 +23,12 @@ export class BingoApi {
     })) as Bingo;
   }
 
-  async shareBingo() {
-    await fetch(`${this.baseUrl}/share`, {
+  async shareBingo(fields: Bingo) {
+    return (await fetch(`${this.baseUrl}/share`, {
       method: "POST",
-      body: JSON.stringify({}),
-    }).then((data) => data.json());
+      body: JSON.stringify({
+        field: fields.map((field) => field.id),
+      }),
+    }).then((data) => data.json())) as { picture_id: string };
   }
 }

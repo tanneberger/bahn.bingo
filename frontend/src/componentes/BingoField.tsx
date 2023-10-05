@@ -1,20 +1,8 @@
-import { useState, useEffect } from 'react';
-import { api } from '../main';
-import type { Bingo, Field } from '../BingoApi';
-import ShareOnMastodon from './ShareOnMastodon';
-
-const bingoCases = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-];
-
-const isBingoComplete = (fields: Bingo) => bingoCases.some((bingoCase) => bingoCase.every((id) => fields[id].checked));
+import { useState, useEffect } from "react";
+import { api } from "../main";
+import type { Bingo, Field } from "../BingoApi";
+import ShareOnMastodon from "./ShareOnMastodon";
+import { isBingoComplete } from "../helpers/bingo";
 
 function BingoField() {
   const [fields, setFields] = useState(null as null | Bingo);
@@ -23,19 +11,15 @@ function BingoField() {
   useEffect(() => {
     (async () => {
       const bingo = await api.getBingo();
-      setFields(
-        bingo
-          .sort(() => Math.random() - 0.5)
-          .slice(-9)
-      );
+      setFields(bingo.sort(() => Math.random() - 0.5).slice(-9));
     })();
   }, []);
 
   return (
-    <figure className="card w-218 bg-base-100 shadow-xl p-4">
+    <figure className="card m-auto md:w-1/2 xl:w-1/3 bg-base-100 shadow-xl p-4">
       <div className="grid grid-cols-3 mb-3">
-        {
-          fields && fields.map((field: Field) => (
+        {fields &&
+          fields.map((field: Field) => (
             <>
               <input
                 id={field.id.toString()}
@@ -53,13 +37,12 @@ function BingoField() {
                 {field.message}
               </label>
             </>
-          ))
-        }
+          ))}
       </div>
       {bingoCoplete && <p>BINGOOO!!!</p>}
-      <ShareOnMastodon />
+      {fields && <ShareOnMastodon fields={fields} />}
     </figure>
-  )
+  );
 }
 
-export default BingoField
+export default BingoField;
