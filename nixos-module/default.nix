@@ -134,7 +134,10 @@ in
           root = "${pkgs.bahn-bingo-frontend}/bin/";
         };
         extraConfig = ''
-          add_header Access-Control-Allow-Origin *;
+          add_header 'Access-Control-Allow-Origin' '*';
+          add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
+          add_header 'Access-Control-Allow-Credentials' 'true';
+          add_header 'Access-Control-Allow-Headers' '*';
         '';
       };
       "${cfg.domains.filesDomain}" = {
@@ -143,6 +146,12 @@ in
         locations."/" = {
           root = cfg.pictureFolder;
         };
+        extraConfig = ''
+          add_header 'Access-Control-Allow-Origin' '*';
+          add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
+          add_header 'Access-Control-Allow-Credentials' 'true';
+          add_header 'Access-Control-Allow-Headers' '*';
+        '';
       };
       "${cfg.domains.apiDomain}" = {
         enableACME = true;
@@ -151,22 +160,10 @@ in
           proxyPass = with cfg.http; "http://${host}:${toString port}";
         };
         extraConfig = ''
-          add_header 'Access-Control-Allow-Origin' "*";
+          add_header 'Access-Control-Allow-Origin' '*';
           add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
           add_header 'Access-Control-Allow-Credentials' 'true';
           add_header 'Access-Control-Allow-Headers' '*';
-
-          if ($request_method = OPTIONS) {
-
-              add_header 'Access-Control-Allow-Origin' "*";
-              add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE, PUT';
-              add_header 'Access-Control-Allow-Credentials' 'true';
-              add_header 'Access-Control-Allow-Headers' '*';
-
-              add_header Content-Type text/plain;
-              add_header Content-Length 0;
-              return 204;
-          }
         '';
       };
     };
