@@ -1,18 +1,25 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i python3.11 -p "python311.withPackages(ps: with ps; [ pyvips flask ])"
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 import json
 import os
 import uuid
 import copy
 import pyvips
+import io
+
+field_config = os.getenv("BAHNBINGO_FIELD_CONFIG")
+bingo_template = os.getenv("BAHNBINGO_BINGO_TEMPLATE")
+pictrure_folder = os.getenv("BAHNBINGO_PICTURE_FOLDER")
+http_host = os.getenv("BAHNBINGO_HTTP_HOST")
+http_port = os.getenv("BAHNBINGO_HTTP_PORT")
 
 app = Flask(__name__)  # Flask constructor
 
-with open(os.getenv("BAHNBINGO_FIELD_CONFIG")) as f:
+with open(field_config) as f:
     name_mapping = json.loads(f.read())
-with open(os.getenv("BAHNBINGO_BINGO_TEMPLATE")) as f:
+with open(bingo_template) as f:
     input_svg = f.read()
 
 
@@ -31,7 +38,7 @@ def share():
 
     new_uuid = uuid.uuid4()
 
-    output_png_path = os.getenv("BAHNBINGO_PICTURE_FOLDER") + "/" + str(new_uuid) + ".png"
+    output_png_path = pictrure_folder + "/" + str(new_uuid) + ".png"
 
     svg_content_copy = copy.copy(input_svg)
     for i in range(9):
@@ -47,7 +54,27 @@ def share():
     response = jsonify({"picture_id": new_uuid})
     return response
 
+@app.route('/share/<image_hash>.png', methods=['GET'])
+def share_image_hash(image_hash):
+
+    fields = image_hash.split(',')
+
+    svg_content_copy = copy.copy(input_svg)
+    for i in range(9):
+        # validating that it is a valid bingo field
+        if str(fields[i]) not in name_mapping.keys():
+            return "Bad User Data", 400
+
+        svg_content_copy = svg_content_copy.replace("Test{}".format(str(i)), name_mapping[str(fields[i])])
+        image = pyvips.Image.svgload_buffer(svg_content_copy.encode(), dpi=300)
+
+    return send_file(
+        io.BytesIO(image.to_bytes), # TODO: fix das mal muss iwie binary oder so
+        mimetype='image/png',
+        as_attachment=True,
+        download_name='%s.png' % pid
+    )
 
 if __name__ == '__main__':
     print(name_mapping)
-    app.run(host=os.getenv("BAHNBINGO_HTTP_HOST"), port=int(os.getenv("BAHNBINGO_HTTP_PORT")))
+    app.run(host=http_host, port=int(http_port))
