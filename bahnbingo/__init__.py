@@ -31,9 +31,15 @@ def bingo():
 
 @app.route("/share/<image_hash>.png", methods=["GET"])
 def share_image_hash(image_hash):
-    current_config_field = base64.b64decode(image_hash).decode()
-    print(current_config_field)
-    fields = current_config_field.split(",")
+    fields = []
+    try:
+        current_field_config = base64.b64decode(image_hash).decode()
+        fields = current_field_config.split(",")
+    except ValueError:
+        return "Bad User Data", 400
+
+    if len(fields) < 9:
+        return "Bad User Data", 400
 
     svg_content_copy = copy.copy(input_svg)
     for i in range(9):
