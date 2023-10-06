@@ -12,7 +12,6 @@ import base64
 
 field_config = os.getenv("BAHNBINGO_FIELD_CONFIG")
 bingo_template = os.getenv("BAHNBINGO_BINGO_TEMPLATE")
-pictrure_folder = os.getenv("BAHNBINGO_PICTURE_FOLDER")
 http_host = os.getenv("BAHNBINGO_HTTP_HOST")
 http_port = os.getenv("BAHNBINGO_HTTP_PORT")
 
@@ -27,32 +26,6 @@ with open(bingo_template) as f:
 @app.route("/bingo", methods=["GET"])
 def bingo():
     response = jsonify(name_mapping)
-    return response
-
-
-@app.route("/share", methods=["POST"])
-def share():
-    data = request.get_json(force=True)
-
-    if "field" not in data and len(data["field"]) < 9:
-        return "Bad User Data", 400
-
-    new_uuid = uuid.uuid4()
-
-    output_png_path = pictrure_folder + "/" + str(new_uuid) + ".png"
-
-    svg_content_copy = copy.copy(input_svg)
-    for i in range(9):
-        # validating that it is a valid bingo field
-        if str(data["field"][i]) not in name_mapping.keys():
-            return "Bad User Data", 400
-
-        svg_content_copy = svg_content_copy.replace("Test{}".format(str(i)), name_mapping[str(data["field"][i])])
-
-    image = pyvips.Image.svgload_bfuffer(svg_content_copy.encode(), dpi=300)
-    image.write_to_file(output_png_path)
-
-    response = jsonify({"picture_id": new_uuid})
     return response
 
 
@@ -74,7 +47,7 @@ def share_image_hash(image_hash):
     image_buffer = image.pngsave_buffer()
 
     return send_file(
-        io.BytesIO(image_buffer),  # TODO: fix das mal muss iwie binary oder so
+        io.BytesIO(image_buffer),
         mimetype="image/png",
         as_attachment=False,
         download_name="content.png",
