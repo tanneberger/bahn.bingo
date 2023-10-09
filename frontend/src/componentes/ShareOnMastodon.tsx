@@ -36,12 +36,12 @@ function ShareOnMastodon({ fields }: { fields: Bingo }) {
   };
 
   const handleShare = async () => {
-    const { picture_id } = await api.shareBingo(fields);
+    const imgUrl = await api.getBingoUrl(fields);
     openMastodon({
       instance,
       text: getText({
         bingoComplete: isBingoComplete(fields),
-        imgUrl: `https://files.bahn.bingo/${picture_id}.png`,
+        imgUrl,
       }),
     });
   };
