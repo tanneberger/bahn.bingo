@@ -41,6 +41,10 @@ def share_image_hash(image_hash):
     if len(fields) < 9:
         return "Bad User Data", 400
 
+    dpi = int(request.args.get('dpi') or 300)
+    if dpi > 600:
+        return "Bad User Data", 400
+
     svg_content_copy = copy.copy(input_svg)
     for i in range(9):
         # validating that it is a valid bingo field
@@ -49,7 +53,7 @@ def share_image_hash(image_hash):
 
         svg_content_copy = svg_content_copy.replace("Test{}".format(str(i)), name_mapping[str(fields[i])])
 
-    image = pyvips.Image.svgload_buffer(svg_content_copy.encode(), dpi=300)
+    image = pyvips.Image.svgload_buffer(svg_content_copy.encode(), dpi=dpi)
     image_buffer = image.pngsave_buffer()
 
     return send_file(
