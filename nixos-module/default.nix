@@ -175,5 +175,6 @@ in
       isSystemUser = true;
       group = cfg.group;
     };
+    users.groups.bahnbingo = {};
   };
 }
