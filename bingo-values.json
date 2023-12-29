@@ -8,12 +8,12 @@
     "render": "<tspan>Signalstörung</tspan>"
   },
   "2": {
-    "plain": "Person \nauf Gleis",
-    "render": "<tspan>Person \nauf Gleis</tspan>"
+    "plain": "Person auf Gleis",
+    "render": "<tspan>Person auf Gleis</tspan>"
   },
   "3": {
-    "plain": "Verspätung aus\n vorheriger Fahrt",
-    "render": "<tspan>Verspätung aus\n vorheriger Fahrt</tspan>"
+    "plain": "Verspätung aus vorheriger Fahrt",
+    "render": "<tspan>Verspätung aus vorheriger Fahrt</tspan>"
   },
   "4": {
     "plain": "Fehlende Streckenkenntnis",
@@ -101,7 +101,7 @@
   },
   "25": {
     "plain": "Falsche Informationen vom Bahn Navigator",
-    "render": "<tspan>Falsche Informationen vom Bahn Navigator</tspan>"
+    "render": "<tspan>Falsche Informationen</tspan><tspan dy=\"1.6em\">vom Bahn Navigator</tspan>"
   },
   "26": {
     "plain": "PZB Zwangsbremsung",

@@ -34,12 +34,13 @@ def bingo():
     return response
 
 
-@app.route("/share/<image_hash>.png", methods=["GET"])
+@app.route("/share", methods=["GET"])
 def share_image_hash(image_hash):
     fields = []
+
     try:
-        current_field_config = base64.b64decode(image_hash).decode()
-        fields = current_field_config.split(",")
+        fields = list(map(int, request.args.get('fields').split(",")))
+        active = list(map(int, request.args.get('active').split(",")))
     except ValueError:
         return "Bad User Data", 400
 
@@ -52,10 +53,6 @@ def share_image_hash(image_hash):
 
     svg_content_copy = copy.copy(input_svg)
     for i in range(9):
-        # validating that it is a valid bingo field
-        if not fields[i].isdigit() and str(int(fields[i])) not in bingo_values.keys():
-            return "Bad User Data", 400
-
         svg_content_copy = svg_content_copy.replace("Test{}".format(str(i)), bingo_values[str(fields[i])]["render"])
 
     image = pyvips.Image.svgload_buffer(svg_content_copy.encode(), dpi=dpi)
