@@ -18,14 +18,19 @@ http_port = os.getenv("BAHNBINGO_HTTP_PORT")
 app = Flask(__name__)  # Flask constructor
 
 with open(field_config) as f:
-    name_mapping = json.loads(f.read())
+    bingo_values = json.loads(f.read())
+    user_bingo_field = {}
+
+    for (key, value) in bingo_values.items():
+        user_bingo_field[key] = value["plain"]
+
 with open(bingo_template) as f:
     input_svg = f.read()
 
 
 @app.route("/bingo", methods=["GET"])
 def bingo():
-    response = jsonify(name_mapping)
+    response = jsonify(user_bingo_field)
     return response
 
 
@@ -48,10 +53,10 @@ def share_image_hash(image_hash):
     svg_content_copy = copy.copy(input_svg)
     for i in range(9):
         # validating that it is a valid bingo field
-        if not fields[i].isdigit() and str(int(fields[i])) not in name_mapping.keys():
+        if not fields[i].isdigit() and str(int(fields[i])) not in bingo_values.keys():
             return "Bad User Data", 400
 
-        svg_content_copy = svg_content_copy.replace("Test{}".format(str(i)), name_mapping[str(fields[i])])
+        svg_content_copy = svg_content_copy.replace("Test{}".format(str(i)), bingo_values[str(fields[i])]["render"])
 
     image = pyvips.Image.svgload_buffer(svg_content_copy.encode(), dpi=dpi)
     image_buffer = image.pngsave_buffer()
@@ -65,5 +70,5 @@ def share_image_hash(image_hash):
 
 
 if __name__ == "__main__":
-    print(name_mapping)
+    print(bingo_values)
     app.run(host=http_host, port=int(http_port))
