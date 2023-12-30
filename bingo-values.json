@@ -1,194 +1,434 @@
 {
   "0": {
     "plain": "Bahnausfall",
-    "render": "<tspan>Bahnausfall</tspan>"
+    "render": {
+      "0": "Bahnausfall",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "1": {
     "plain": "Signalstörung",
-    "render": "<tspan>Signalstörung</tspan>"
+    "render": {
+      "0": "Signalstörung",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "2": {
     "plain": "Person auf Gleis",
-    "render": "<tspan>Person auf Gleis</tspan>"
+    "render": {
+      "0": "Person auf Gleis",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "3": {
     "plain": "Verspätung aus vorheriger Fahrt",
-    "render": "<tspan>Verspätung aus vorheriger Fahrt</tspan>"
+    "render": {
+      "0": "Verspätung aus vorheriger Fahrt",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "4": {
     "plain": "Fehlende Streckenkenntnis",
-    "render": "<tspan>Fehlende Streckenkenntnis</tspan>"
+    "render": {
+      "0": "Fehlende Streckenkenntnis",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "5": {
     "plain": "Weichenfehler",
-    "render": "<tspan>Weichenfehler</tspan>"
+    "render": {
+      "0": "Weichenfehler",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "6": {
     "plain": "Kaputte Oberleitung",
-    "render": "<tspan>Kaputte Oberleitung</tspan>"
+    "render": {
+      "0": "Kaputte Oberleitung",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "7": {
     "plain": "Klimaanlage Ausfall",
-    "render": "<tspan>Klimaanlage Ausfall</tspan>"
+    "render": {
+      "0": "Klimaanlage Ausfall",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "8": {
     "plain": "Reservierungsanzeigen Ausfall",
-    "render": "<tspan>Reservierungsanzeigen Ausfall</tspan>"
+    "render": {
+      "0": "Reservierungsanzeigen Ausfall",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "9": {
     "plain": "Umgedrehte Wagenreihenfolge",
-    "render": "<tspan>Umgedrehte Wagenreihenfolge</tspan>"
+    "render": {
+      "0": "Umgedrehte Wagenreihenfolge",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "10": {
     "plain": "Gleiswechsel",
-    "render": "<tspan>Gleiswechsel</tspan>"
+    "render": {
+      "0": "Gleiswechsel",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "11": {
     "plain": "Zugausfall",
-    "render": "<tspan>Zugausfall</tspan>"
+    "render": {
+      "0": "Zugausfall",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "12": {
     "plain": "1h Verspätung (25 % Rabatt)",
-    "render": "<tspan>1h Verspätung (25 % Rabatt)</tspan>"
+    "render": {
+      "0": "1h Verspätung (25 % Rabatt)",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "13": {
     "plain": "2h Verspätung (50 % Rabatt)",
-    "render": "<tspan>2h Verspätung (50 % Rabatt)</tspan>"
+    "render": {
+      "0": "2h Verspätung (50 % Rabatt)",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "14": {
     "plain": "Kein Wlan",
-    "render": "<tspan>Kein Wlan</tspan>"
+    "render": {
+      "0": "Kein Wlan",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "15": {
     "plain": "Museumsfahrt",
-    "render": "<tspan>Museumsfahrt</tspan>"
+    "render": {
+      "0": "Museumsfahrt",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "16": {
     "plain": "Außerplanmäßiger Halt",
-    "render": "<tspan>Außerplanmäßiger Halt</tspan>"
+    "render": {
+      "0": "Außerplanmäßiger Halt",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "17": {
     "plain": "Kommender Strecken Abschnitt gesperrt",
-    "render": "<tspan>Kommender Strecken Abschnitt gesperrt</tspan>"
+    "render": {
+      "0": "Kommender Strecken Abschnitt gesperrt",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "18": {
     "plain": "Bord Bistro geschlossen",
-    "render": "<tspan>Bord Bistro geschlossen</tspan>"
+    "render": {
+      "0": "Bord Bistro geschlossen",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "19": {
     "plain": "Zug Neustart",
-    "render": "<tspan>Zug Neustart</tspan>"
+    "render": {
+      "0": "Zug Neustart",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "20": {
     "plain": "Beschädigungen durch Sturm",
-    "render": "<tspan>Beschädigungen durch Sturm</tspan>"
+    "render": {
+      "0": "Beschädigungen durch Sturm",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "21": {
     "plain": "Streik",
-    "render": "<tspan>Streik</tspan>"
+    "render": {
+      "0": "Streik",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "22": {
     "plain": "Kaputte Tür",
-    "render": "<tspan>Kaputte Tür</tspan>"
+    "render": {
+      "0": "Kaputte Tür",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "23": {
     "plain": "Kaputte Toilette",
-    "render": "<tspan>Kaputte Toilette</tspan>"
+    "render": {
+      "0": "Kaputte Toilette",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "24": {
     "plain": "Umleitung",
-    "render": "<tspan>Umleitung</tspan>"
+    "render": {
+      "0": "Umleitung",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "25": {
     "plain": "Falsche Informationen vom Bahn Navigator",
-    "render": "<tspan>Falsche Informationen</tspan><tspan dy=\"1.6em\">vom Bahn Navigator</tspan>"
+    "render": {
+      "0": "Falsche Informationen<tspan dy=\"1.6em\">vom Bahn Navigator",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "26": {
     "plain": "PZB Zwangsbremsung",
-    "render": "<tspan>PZB Zwangsbremsung</tspan>"
+    "render": {
+      "0": "PZB Zwangsbremsung",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "27": {
     "plain": "Technische Störung am Zug",
-    "render": "<tspan>Technische Störung am Zug</tspan>"
+    "render": {
+      "0": "Technische Störung am Zug",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "29": {
     "plain": "Nicht Elektrifzierte Strecke",
-    "render": "<tspan>Nicht Elektrifzierte Strecke</tspan>"
+    "render": {
+      "0": "Nicht Elektrifzierte Strecke",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "30": {
     "plain": "Notfall im Zug",
-    "render": "<tspan>Notfall im Zug</tspan>"
+    "render": {
+      "0": "Notfall im Zug",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "31": {
     "plain": "Verspätung von Vorheriger Fahrt",
-    "render": "<tspan>Verspätung von Vorheriger Fahrt</tspan>"
+    "render": {
+      "0": "Verspätung von Vorheriger Fahrt",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "32": {
     "plain": "Profalla-Wende",
-    "render": "<tspan>Profalla-Wende</tspan>"
+    "render": {
+      "0": "Profalla-Wende",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "33": {
     "plain": "Mir Wurde am Bahnhof Substanzen Nach Betäubungsmittel Gesetz angeboten",
-    "render": "<tspan text-anchor=\"middle\">Mir Wurde am Bahnhof Substanzen</tspan><tspan dy=\"1.2em\" text-anchor=\"middle\">Nach Betäubungsmittel Gesetz angeboten</tspan>"
+    "render": {
+      "0": "Mir Wurde am Bahnhof  Gesetz angeboten",
+      "1": "Substanzen",
+      "2": "Nach Betäubungsmittel",
+      "3": "Gesetz angeboten"
+    }
   },
   "34": {
     "plain": "Flexticket",
-    "render": "<tspan>Flexticket</tspan>"
+    "render": {
+      "0": "Flexticket",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "35": {
     "plain": "Hotel oder Taxi",
-    "render": "<tspan>Hotel oder Taxi</tspan>"
+    "render": {
+      "0": "Hotel oder Taxi",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "36": {
     "plain": "Hinter Güterzug her Tuckern",
-    "render": "<tspan>Hinter Güterzug her Tuckern</tspan>"
+    "render": {
+      "0": "Hinter Güterzug her Tuckern",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "37": {
     "plain": "Infrastrukturstörung",
-    "render": "<tspan>Infrastrukturstörung</tspan>"
+    "render": {
+      "0": "Infrastrukturstörung",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "38": {
     "plain": "Schienenersatzverkehr",
-    "render": "<tspan>Schienenersatzverkehr</tspan>"
+    "render": {
+      "0": "Schienenersatzverkehr",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "39": {
     "plain": "Vorfahrt eines anderen Zuges",
-    "render": "<tspan>Vorfahrt eines anderen Zuges</tspan>"
+    "render": {
+      "0": "Vorfahrt eines anderen Zuges",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "40": {
     "plain": "Polizeieinsatz",
-    "render": "<tspan>Polizeieinsatz</tspan>"
+    "render": {
+      "0": "Polizeieinsatz",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "41": {
     "plain": "Feuerwehreinsatz (z.B. durch Böschungsbrand)",
-    "render": "<tspan>Feuerwehreinsatz (z.B. durch Böschungsbrand)</tspan>"
+    "render": {
+      "0": "Feuerwehreinsatz (z.B. durch Böschungsbrand)",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "42": {
     "plain": "Entschuldigung, diesen Platz habe ich reserviert!",
-    "render": "<tspan>Entschuldigung, diesen Platz habe ich reserviert!</tspan>"
+    "render": {
+      "0": "Entschuldigung, diesen Platz habe ich reserviert!",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "43": {
     "plain": "Der Zutritt ist nur noch mit einem 1. Klasse-Flexpreis erlaubt!",
-    "render": "<tspan>Der Zutritt ist nur noch mit einem 1. Klasse-Flexpreis erlaubt!</tspan>"
+    "render": {
+      "0": "Der Zutritt ist nur noch mit einem 1. Klasse-Flexpreis erlaubt!",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "44": {
     "plain": "Das Deutschlandticket gilt hier nicht!",
-    "render": "<tspan>Das Deutschlandticket gilt hier nicht!</tspan>"
+    "render": {
+      "0": "Das Deutschlandticket gilt hier nicht!",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "45": {
     "plain": "Zänk ju for träwweling",
-    "render": "<tspan>Zänk ju for träwweling</tspan>"
+    "render": {
+      "0": "Zänk ju for träwweling",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "46": {
     "plain": "Toilette Voll",
-    "render": "<tspan>Toilette Voll</tspan>"
+    "render": {
+      "0": "Toilette Voll",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "47": {
     "plain": "Flex before Departure",
-    "render": "<tspan>Flex before Departure</tspan>"
+    "render": {
+      "0": "Flex before Departure",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   },
   "48": {
     "plain": "Arrived on Time",
-    "render": "<tspan>Arrived on Time</tspan>"
+    "render": {
+      "0": "Arrived on Time",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
   }
 }
