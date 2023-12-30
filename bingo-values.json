@@ -129,7 +129,7 @@
   },
   "33": {
     "plain": "Mir Wurde am Bahnhof Substanzen Nach Betäubungsmittel Gesetz angeboten",
-    "render": "<tspan>Mir Wurde am Bahnhof Substanzen</tspan><tspan dy=\"1.2em>Nach Betäubungsmittel Gesetz angeboten</tspan>"
+    "render": "<tspan text-anchor=\"middle\">Mir Wurde am Bahnhof Substanzen</tspan><tspan dy=\"1.2em\" text-anchor=\"middle\">Nach Betäubungsmittel Gesetz angeboten</tspan>"
   },
   "34": {
     "plain": "Flexticket",
