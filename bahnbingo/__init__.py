@@ -35,7 +35,7 @@ def bingo():
 
 
 @app.route("/share", methods=["GET"])
-def share_image_hash(image_hash):
+def share_image_hash():
     fields = []
 
     try:
@@ -53,7 +53,8 @@ def share_image_hash(image_hash):
 
     svg_content_copy = copy.copy(input_svg)
     for i in range(9):
-        svg_content_copy = svg_content_copy.replace("Test{}".format(str(i)), bingo_values[str(fields[i])]["render"])
+        display_text_svg = bingo_values[str(fields[i])]["render"]
+        svg_content_copy = svg_content_copy.replace("Test{}".format(str(i + 1)), display_text_svg)
 
     image = pyvips.Image.svgload_buffer(svg_content_copy.encode(), dpi=dpi)
     image_buffer = image.pngsave_buffer()
