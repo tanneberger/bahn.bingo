@@ -36,7 +36,7 @@ in
     };
     bingoTemplate = mkOption {
       type = types.str;
-      default = "${../frontend/assets/share_template.svg}";
+      default = "${../share_template.svg}";
       description = ''where the bingo field template lives'';
     };
     bingoFieldConfig = mkOption {
