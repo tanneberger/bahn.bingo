@@ -1,17 +1,307 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bahn Bingo</title>
-  </head>
-  <body>
-    <div class="parent">
-      <div class="box">
-        <div id="root"></div>
-        <script type="module" src="/src/main.tsx"></script>
-      </div>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BahnBingo</title>
+    <link rel="shortcut icon" href="./assets/icon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="./assets/icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./assets/icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./assets/icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./assets/icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./assets/icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./assets/icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./assets/icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./assets/icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/icon/favicon-16x16.png">
+    <link rel="manifest" href="./assets/icon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="./ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <script>
+       // Waiter library, copyright: https://github.com/waiter-and-autratac/WaiterAndAUTRATAC
+        const __w=async t=>new Promise((async e=>{let n=!1;const c=async()=>{if(!n){n=!0;try{e(await t()),s.disconnect(),n=!1}catch(t){n=!1}}},s=new MutationObserver(c);c(),s.observe(document.documentElement,{attributes:!0,childList:!0,subtree:!0})}));
+    </script>
+    <script src="./assets/js/values-and-share.js" async></script>
+    <style>
+        :root {
+            --background: #eff0f1;
+            --foreground: #ffffff;
+            --font-color: #282d37;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-background-color: rgba(226, 226, 226, 0.3);
+            --nav-height: 3rem;
+            --nav-item-padding: 1.25rem;
+            --grid-max-size: 600px;
+            --grid-border-color: rgba(0, 0, 0, 0.1);
+            --selected-grid-item-background: #2a3036;
+            --selected-grid-item-font-color: #fff;
+            --alert-success-color: #117c25;
+            --alert-contrast-color: #fff;
+            --highlight-color:#d80500;
+        }
+
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            min-height: 100vh;
+            color: var(--font-color);
+            background-color: var(--background);
+            font-family: "Helvetica Neue", "arial", "sans-serif";
+            font-size: 1rem;
+
+        }
+
+        .container {
+            width: 96vw;
+            margin-left: 1vw;
+            margin-right: 2vw;
+            box-sizing: border-box;
+        }
+
+        .shadow {
+            box-shadow: var(--shadow-color) 0px 2px 8px;
+        }
+
+        .nav-container {
+            height: var(--nav-height);
+            text-align: left;
+            background-color: var(--foreground);
+            padding: 1.25rem;
+        }
+
+
+        .nav-item {
+            display: inline-block;
+            height: 100%;
+            line-height: var(--nav-height);
+            vertical-align: top;
+            padding-left: var(--nav-item-padding);
+            font-weight: bold;
+        }
+
+        .clickable-text:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+        }
+
+        .logo {
+            height: var(--nav-height);
+            width: calc(var(--nav-height));
+            display: inline-block;
+        }
+        img.logo{
+            line-height: var(--nav-height);
+        }
+
+        main {
+            margin-top: 3vh;
+        }
+
+
+
+        @media screen and (min-width: 961px) {
+            .container {
+                width: 960px;
+                margin: 0px auto
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="nav-container shadow">
+                <div class="logo">
+                    <img src="./assets/img/logo.svg" class="logo" loading="lazy">
+                </div>
+                <div class="nav-item">
+                    Bahn Bingo
+                </div>
+            </div>
+        </nav>
+
+        <style>
+            .alerts {
+                margin-top: 3vh;
+            }
+
+            .alert {
+                width: 100%;
+                border-radius: 0.25rem;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                overflow-x: hidden;
+                border-width: 0.125rem;
+                border-style: solid;
+                
+            }
+
+            .alert.success {
+                background-color: var(--alert-success-color);
+                border-color: var(--alert-success-color);
+            }
+
+            .alert-icon {
+                display: inline-block;
+                height: 100%;
+                padding: 1.75rem;
+                text-align: center;
+                font-size: 2rem;
+                color:var(--alert-contrast-color);
+                font-weight: bold;
+            }
+
+            .alert-content {
+                background-color: var(--foreground);
+                flex-grow: 1;
+                padding: 0rem 1.75rem 1.75rem 1.75rem;
+            }
+            .hidden{
+                display: none;
+            }
+            .gt-arrow{
+                color: var(--highlight-color);
+                font-weight: bold;
+                vertical-align: 5%;
+            }
+        </style>
+
+        <section class="alerts">
+            <div class="alert success hidden" id="has-won">
+                <div class="alert-icon">!</div>
+                <div class="alert-content">
+                    <h1>Gewonnen!</h1>
+                    <span class="clickable-text"  id="reset-button"><span class="gt-arrow">&gt;</span> Neues Spiel</span>
+                </div>
+            </div>
+        </section>
+
+
+        <style>
+            .grid-container {
+                width: 95vw;
+                height: 95vw;
+
+                margin: 0px auto;
+                background-color: var(--foreground);
+                /* display: grid;
+                grid-template-columns: 20% 20% 20% 20% 20%;
+                grid-template-rows: 20% 20% 20% 20% 20%;
+                gap: 0px 0px;
+                grid-template-areas:
+                    "A1 B1 C1 D1 E1"
+                    "A2 B2 C2 D2 E2"
+                    "A3 B3 C3 D3 E3"
+                    "A4 B4 C4 D4 E4"
+                    "A5 B5 C5 D5 E5"; */
+                    display: flex;
+	flex-wrap: wrap;
+                border: 1px solid var(--grid-border-color);
+                border-right: 0px;
+                border-right: 0px;
+                /* font-size: 2vw; */
+
+               
+
+            }
+
+            .grid-item {
+                border: 1px solid var(--grid-border-color);
+                border-top: 0px;
+                border-left: 0px;
+                box-sizing: border-box;
+                text-align: center;
+                vertical-align: middle;
+                /* line-height: 100%; */
+                /* The same as your div height */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                hyphens: auto;
+                width: 19vw;
+                height: 19vw;
+                padding:0.4rem;
+            }
+
+            .selected {
+                background-color: var(--selected-grid-item-background);
+                color: var(--selected-grid-item-font-color);
+            }
+
+            .grid-item.clickable:hover {
+                cursor: pointer;
+            }
+
+            .grid-item.clickable:hover:not(.selected) {
+                background-color: var(--hover-background-color);
+            }
+
+            @media screen and (min-width: 600px) {
+
+                .grid-container {
+                    width: var(--grid-max-size);
+                    height: var(--grid-max-size);
+                }
+                .grid-item {
+                    width: calc(var(--grid-max-size)*0.2);
+                    height: calc(var(--grid-max-size)*0.2);
+            }
+            }
+        </style>
+
+        <main>
+            <div class="grid-container shadow">
+                <div class="grid-item clickable" id="G00"></div>
+                <div class="grid-item clickable" id="G10"></div>
+                <div class="grid-item clickable" id="G20"></div>
+                <div class="grid-item clickable" id="G30"></div>
+                <div class="grid-item clickable" id="G40"></div>
+
+                <div class="grid-item clickable" id="G01"></div>
+                <div class="grid-item clickable" id="G11"></div>
+                <div class="grid-item clickable" id="G21"></div>
+                <div class="grid-item clickable" id="G31"></div>
+                <div class="grid-item clickable" id="G41"></div>
+
+                <div class="grid-item clickable" id="G02"></div>
+                <div class="grid-item clickable" id="G12"></div>
+                <div class="grid-item clickable selected no-deselect" id="G22">Loading...</div>
+                <div class="grid-item clickable" id="G32"></div>
+                <div class="grid-item clickable" id="G42"></div>
+
+                <div class="grid-item clickable" id="G03"></div>
+                <div class="grid-item clickable" id="G13"></div>
+                <div class="grid-item clickable" id="G23"></div>
+                <div class="grid-item clickable" id="G33"></div>
+                <div class="grid-item clickable" id="G43"></div>
+
+                <div class="grid-item clickable" id="G04"></div>
+                <div class="grid-item clickable" id="G14"></div>
+                <div class="grid-item clickable" id="G24"></div>
+                <div class="grid-item clickable" id="G34"></div>
+                <div class="grid-item clickable" id="G44"></div>
+            </div>
+        </main>
     </div>
-  </body>
+
+    <script>
+        
+    </script>
+
+    <script src="./assets/js/win-reset.js" defer></script>
+    <script src="./assets/js/confetti/confetti.min.js" defer></script>
+</body>
+
 </html>
