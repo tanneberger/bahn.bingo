@@ -20,6 +20,12 @@
     <link rel="icon" type="image/png" sizes="96x96" href="./assets/icon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/icon/favicon-16x16.png">
     <link rel="manifest" href="./assets/icon/manifest.json">
+    <meta name="description" content="BahnBingo. Das innovative Feedbacksystem für die Reise mit der Bahn.">
+    <meta property="og:title" content="BahnBingo" />
+    <meta property="og:description" content="Das innovative Feedbacksystem für die Reise mit der Bahn." />
+    <meta property="og:image" content="./assets/img/social.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="de_DE" />
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="./ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -33,6 +39,7 @@
             --background: #eff0f1;
             --foreground: #ffffff;
             --font-color: #282d37;
+            --contrast-font-color: #ffffff;
             --shadow-color: rgba(0, 0, 0, 0.3);
             --hover-background-color: rgba(226, 226, 226, 0.3);
             --nav-height: 3rem;
@@ -44,6 +51,7 @@
             --alert-success-color: #117c25;
             --alert-contrast-color: #fff;
             --highlight-color:#d80500;
+            --highlight-hover-color:#af0300;
         }
 
         html,
@@ -55,13 +63,14 @@
             background-color: var(--background);
             font-family: "Helvetica Neue", "arial", "sans-serif";
             font-size: 1rem;
+            padding-bottom: 2rem;
 
         }
 
         .container {
-            width: 96vw;
-            margin-left: 1vw;
-            margin-right: 2vw;
+            width: 100vw;
+            padding-left: 1vw;
+            padding-right: 2vw;
             box-sizing: border-box;
         }
 
@@ -133,6 +142,7 @@
         <style>
             .alerts {
                 margin-top: 3vh;
+                width: 100%;
             }
 
             .alert {
@@ -144,6 +154,7 @@
                 overflow-x: hidden;
                 border-width: 0.125rem;
                 border-style: solid;
+                box-sizing: border-box;
                 
             }
 
@@ -165,15 +176,56 @@
             .alert-content {
                 background-color: var(--foreground);
                 flex-grow: 1;
-                padding: 0rem 1.75rem 1.75rem 1.75rem;
+                padding: 0rem 1.75rem 0.4rem 1.75rem;
             }
             .hidden{
                 display: none;
             }
-            .gt-arrow{
-                color: var(--highlight-color);
-                font-weight: bold;
-                vertical-align: 5%;
+            
+            button.main{
+                background-color: var(--highlight-color);
+                color: var(--contrast-font-color);
+                border:none;
+                padding:0.5rem 1rem;
+                border-radius: 0.5rem;
+                font-size: 1.35rem;
+                cursor: pointer;
+            }
+            hr{
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                border: thin solid var(--hover-background-color);
+            }
+            button.main:hover{
+                background-color: #af0300;
+            }
+            .s-button{
+                padding:0.5rem 1rem;
+                border-radius:0.5rem;
+                border: none;
+                text-decoration: none;
+                margin: 0.3rem;
+                display: inline-block;
+            }
+            .s-button:hover{
+                text-decoration: underline;
+                cursor: pointer;
+            }
+            .social-x{
+                background-color: #292929;
+                color:white;
+            }
+            .social-fb{
+                background-color: #3678e5;
+                color:white;
+            }
+            .social-md{
+                background-color: #423bc5;
+                color:white
+            }
+            .social-link{
+                background-color: #dadada;
+                color:#292929
             }
         </style>
 
@@ -182,7 +234,14 @@
                 <div class="alert-icon">!</div>
                 <div class="alert-content">
                     <h1>Gewonnen!</h1>
-                    <span class="clickable-text"  id="reset-button"><span class="gt-arrow">&gt;</span> Neues Spiel</span>
+                    <button class="main" id="reset-button">Neues Spiel</button>
+                    <hr>
+                    <p>Dieses Spiel teilen:</p>
+                    <a target="_blank" title="Share via X" class="share-button s-button social-x" href="" data-base="https://twitter.com/intent/tweet?text=Ich%20habe%20leider%20das%20Bahn-Bingo%20gewonnen!&url=" >X</a>
+                    <a title="Share via Facebook" target="_blank" class="share-button s-button social-fb" href=""  data-base="https://www.facebook.com/sharer/sharer.php?u=">Facebook</a>
+                    <a target="_blank" title="Share to Mastodon via Tootpick"  class="share-button s-button social-md"  href=""  data-base="https://tootpick.org/#text=Ich%20habe%20leider%20das%20Bahn-Bingo%20gewonnen!%20">Mastodon</a>
+                    <span class="copy-link s-button share-md social-link" id="link-share">Link</span>
+                   
                 </div>
             </div>
         </section>
