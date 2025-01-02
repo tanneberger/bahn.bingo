@@ -9,7 +9,7 @@ function toggle(e) {
     }
     e.classList.contains("no-deselect") ? null : e.classList.toggle("selected")
     if (e.classList.contains("selected")) {
-        if (currentGameSelectedValueIds.indexOf(e.id) <= 0) { //add if not added
+        if (currentGameSelectedValueIds.indexOf(e.id) < 0) { //add if not added
             currentGameSelectedValueIds.push(e.id);
         }
     } else {
