@@ -522,9 +522,27 @@
     }
   },
   "58": {
-    "plain": "Schreiendes Baby/Kleinkind",
+    "plain": "schreiendes baby/kleinkind",
     "render": {
-      "0": "Schreiendes Baby/Kleinkind",
+      "0": "schreiendes baby/kleinkind",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
+  },
+  "59": {
+    "plain": "Klassenfahrt",
+    "render": {
+      "0": "Klassenfahrt",
+      "1": "",
+      "2": "",
+      "3": ""
+    }
+  }, 
+  "60": {
+    "plain": "Lok Defekt",
+    "render": {
+      "0": "Lok Defekt",
       "1": "",
       "2": "",
       "3": ""
